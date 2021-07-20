@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -39,9 +40,41 @@ namespace Facturacion1201
             }
             errorProvider1.SetError(ContrasenaTextBox, "");
 
-            PrincipalForm formulario = new PrincipalForm();
-            this.Hide();
-            formulario.Show();
+            //Canectar a la base de datos
+
+            string cadena = "Data Source=192.168.1.28; Initial Catalog=FACTURACION1201; User ID=sa; Password=Estado2012";
+
+            //SqlConnection _conexion = new SqlConnection(cadena);
+            //_conexion.Open();
+
+            bool EsUsuarioValido = false;
+
+            using (SqlConnection conexion = new SqlConnection(cadena))
+            {
+                string consulta = "SELECT 1 FROM USUARIOS WHERE CODIGO = '" + UsuarioTextBox.Text + "' AND CLAVE = '" + ContrasenaTextBox.Text + "';";
+
+                conexion.Open();
+
+                using (SqlCommand comando = new SqlCommand(consulta, conexion))
+                {
+                    EsUsuarioValido = Convert.ToBoolean(comando.ExecuteScalar());
+                }
+            }
+
+            if (EsUsuarioValido)
+            {
+                PrincipalForm formulario = new PrincipalForm();
+                this.Hide();
+                formulario.Show();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña invalida");
+            }
+
+
+
+            
 
 
         }

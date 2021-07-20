@@ -65,6 +65,7 @@ namespace Facturacion1201
             // 
             // ribbonControlAdv1
             // 
+            this.ribbonControlAdv1.BackStageNavigationButtonStyle = Syncfusion.Windows.Forms.Tools.BackStageNavigationButtonStyles.Office2013;
             this.ribbonControlAdv1.BackStageView = this.backStageView1;
             this.ribbonControlAdv1.CaptionFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbonControlAdv1.Dock = Syncfusion.Windows.Forms.Tools.DockStyleEx.Top;
@@ -73,6 +74,7 @@ namespace Facturacion1201
             this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem2);
             this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem3);
             this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem4);
+            this.ribbonControlAdv1.HideToolTip = true;
             this.ribbonControlAdv1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControlAdv1.MenuButtonFont = new System.Drawing.Font("Segoe UI", 8.25F);
             this.ribbonControlAdv1.MenuButtonText = "Archivo";
@@ -91,7 +93,8 @@ namespace Facturacion1201
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
             this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem1;
-            this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = true;
+            this.ribbonControlAdv1.ShowContextMenu = false;
+            this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
             this.ribbonControlAdv1.Size = new System.Drawing.Size(984, 163);
             this.ribbonControlAdv1.SystemText.QuickAccessDialogDropDownName = "Start menu";
             this.ribbonControlAdv1.SystemText.RenameDisplayLabelText = "&Display Name:";
@@ -163,6 +166,8 @@ namespace Facturacion1201
             // 
             // ribbonControlAdv1.ribbonPanel1
             // 
+            this.toolStripTabItem1.Panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.toolStripTabItem1.Panel.Controls.Add(this.toolStripEx1);
             this.toolStripTabItem1.Panel.Name = "ribbonPanel1";
             this.toolStripTabItem1.Panel.ScrollPosition = 0;
@@ -235,7 +240,7 @@ namespace Facturacion1201
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx2.Size = new System.Drawing.Size(164, 97);
+            this.toolStripEx2.Size = new System.Drawing.Size(290, 97);
             this.toolStripEx2.TabIndex = 0;
             // 
             // ProductostoolStripButton
@@ -245,7 +250,7 @@ namespace Facturacion1201
             this.ProductostoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ProductostoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ProductostoolStripButton.Name = "ProductostoolStripButton";
-            this.ProductostoolStripButton.Size = new System.Drawing.Size(68, 80);
+            this.ProductostoolStripButton.Size = new System.Drawing.Size(68, 94);
             this.ProductostoolStripButton.Text = "Productos";
             this.ProductostoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ProductostoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -293,7 +298,7 @@ namespace Facturacion1201
             this.ClientestoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ClientestoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ClientestoolStripButton.Name = "ClientestoolStripButton";
-            this.ClientestoolStripButton.Size = new System.Drawing.Size(68, 80);
+            this.ClientestoolStripButton.Size = new System.Drawing.Size(68, 94);
             this.ClientestoolStripButton.Text = "Clientes";
             this.ClientestoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ClientestoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -330,7 +335,7 @@ namespace Facturacion1201
             this.toolStripEx4.Office12Mode = false;
             this.toolStripEx4.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx4.Size = new System.Drawing.Size(257, 97);
+            this.toolStripEx4.Size = new System.Drawing.Size(271, 97);
             this.toolStripEx4.TabIndex = 0;
             // 
             // FacturaciontoolStripButton
@@ -340,7 +345,7 @@ namespace Facturacion1201
             this.FacturaciontoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FacturaciontoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FacturaciontoolStripButton.Name = "FacturaciontoolStripButton";
-            this.FacturaciontoolStripButton.Size = new System.Drawing.Size(71, 80);
+            this.FacturaciontoolStripButton.Size = new System.Drawing.Size(71, 94);
             this.FacturaciontoolStripButton.Text = "Facturación";
             this.FacturaciontoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.FacturaciontoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
