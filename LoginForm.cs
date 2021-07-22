@@ -42,26 +42,9 @@ namespace Facturacion1201
 
             //Canectar a la base de datos
 
-            string cadena = "Data Source=192.168.1.28; Initial Catalog=FACTURACION1201; User ID=sa; Password=Estado2012";
+            BaseDatos _base = new BaseDatos();
 
-            //SqlConnection _conexion = new SqlConnection(cadena);
-            //_conexion.Open();
-
-            bool EsUsuarioValido = false;
-
-            using (SqlConnection conexion = new SqlConnection(cadena))
-            {
-                string consulta = "SELECT 1 FROM USUARIOS WHERE CODIGO = '" + UsuarioTextBox.Text + "' AND CLAVE = '" + ContrasenaTextBox.Text + "';";
-
-                conexion.Open();
-
-                using (SqlCommand comando = new SqlCommand(consulta, conexion))
-                {
-                    EsUsuarioValido = Convert.ToBoolean(comando.ExecuteScalar());
-                }
-            }
-
-            if (EsUsuarioValido)
+            if (_base.ValidarUsuario(UsuarioTextBox.Text, ContrasenaTextBox.Text))
             {
                 PrincipalForm formulario = new PrincipalForm();
                 this.Hide();

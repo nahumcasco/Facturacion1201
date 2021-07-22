@@ -92,7 +92,7 @@ namespace Facturacion1201
             this.ribbonControlAdv1.QuickPanelVisible = false;
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem1;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem2;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
             this.ribbonControlAdv1.Size = new System.Drawing.Size(984, 163);
@@ -250,7 +250,7 @@ namespace Facturacion1201
             this.ProductostoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ProductostoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ProductostoolStripButton.Name = "ProductostoolStripButton";
-            this.ProductostoolStripButton.Size = new System.Drawing.Size(68, 94);
+            this.ProductostoolStripButton.Size = new System.Drawing.Size(68, 80);
             this.ProductostoolStripButton.Text = "Productos";
             this.ProductostoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ProductostoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -288,7 +288,7 @@ namespace Facturacion1201
             this.toolStripEx3.Office12Mode = false;
             this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx3.Size = new System.Drawing.Size(327, 97);
+            this.toolStripEx3.Size = new System.Drawing.Size(39, 97);
             this.toolStripEx3.TabIndex = 0;
             // 
             // ClientestoolStripButton
@@ -335,7 +335,7 @@ namespace Facturacion1201
             this.toolStripEx4.Office12Mode = false;
             this.toolStripEx4.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx4.Size = new System.Drawing.Size(271, 97);
+            this.toolStripEx4.Size = new System.Drawing.Size(39, 97);
             this.toolStripEx4.TabIndex = 0;
             // 
             // FacturaciontoolStripButton
