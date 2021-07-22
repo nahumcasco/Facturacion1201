@@ -39,7 +39,87 @@ namespace Facturacion1201
             return EsUsuarioValido;
         }
 
+        public DataTable CargarCategorias()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT * FROM CATEGORIAS ");
 
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using(SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return dt;
+        }
+
+        public bool InsertarProducto(string codigo, string descripcion, int idcategoria, decimal precio, int existencia)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" INSERT INTO PRODUCTOS ");
+                sql.Append(" VALUES (@Codigo, @Descripcion, @IdCategoria, @Precio, @Existencia); ");
+
+                using(SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 80).Value = descripcion;
+                        comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = idcategoria;
+                        comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = precio;
+                        comando.Parameters.Add("@Existencia", SqlDbType.Int).Value = existencia;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public DataTable ListarProductos()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT P.CODIGO, P.DESCRIPCION, C.DESCRIPCION CATEGORIA, P.PRECIO, P.EXISTENCIA ");
+                sql.Append(" FROM PRODUCTOS P ");
+                sql.Append(" INNER JOIN CATEGORIAS C ON C.ID = P.IDCATEGORIA ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return dt;
+        }
 
     }
 }

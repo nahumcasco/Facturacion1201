@@ -59,6 +59,7 @@ namespace Facturacion1201
             // 
             // CodigoTextBox
             // 
+            this.CodigoTextBox.Enabled = false;
             this.CodigoTextBox.Location = new System.Drawing.Point(140, 40);
             this.CodigoTextBox.Name = "CodigoTextBox";
             this.CodigoTextBox.Size = new System.Drawing.Size(270, 20);
@@ -66,6 +67,7 @@ namespace Facturacion1201
             // 
             // DescripcionTextBox
             // 
+            this.DescripcionTextBox.Enabled = false;
             this.DescripcionTextBox.Location = new System.Drawing.Point(140, 84);
             this.DescripcionTextBox.Name = "DescripcionTextBox";
             this.DescripcionTextBox.Size = new System.Drawing.Size(270, 20);
@@ -91,6 +93,7 @@ namespace Facturacion1201
             // 
             // CategoriaComboBox
             // 
+            this.CategoriaComboBox.Enabled = false;
             this.CategoriaComboBox.FormattingEnabled = true;
             this.CategoriaComboBox.Location = new System.Drawing.Point(140, 124);
             this.CategoriaComboBox.Name = "CategoriaComboBox";
@@ -99,6 +102,7 @@ namespace Facturacion1201
             // 
             // PrecioTextBox
             // 
+            this.PrecioTextBox.Enabled = false;
             this.PrecioTextBox.Location = new System.Drawing.Point(517, 40);
             this.PrecioTextBox.Name = "PrecioTextBox";
             this.PrecioTextBox.Size = new System.Drawing.Size(270, 20);
@@ -115,6 +119,7 @@ namespace Facturacion1201
             // 
             // ExistenciaTextBox
             // 
+            this.ExistenciaTextBox.Enabled = false;
             this.ExistenciaTextBox.Location = new System.Drawing.Point(517, 84);
             this.ExistenciaTextBox.Name = "ExistenciaTextBox";
             this.ExistenciaTextBox.Size = new System.Drawing.Size(270, 20);
@@ -137,6 +142,7 @@ namespace Facturacion1201
             this.NuevoButton.TabIndex = 10;
             this.NuevoButton.Text = "Nuevo";
             this.NuevoButton.UseVisualStyleBackColor = true;
+            this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click);
             // 
             // ModificarButton
             // 
@@ -155,6 +161,7 @@ namespace Facturacion1201
             this.GuardarButton.TabIndex = 12;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // EliminarButton
             // 
@@ -205,6 +212,7 @@ namespace Facturacion1201
             this.Controls.Add(this.label1);
             this.Name = "ProductosForm";
             this.Text = "Productos";
+            this.Load += new System.EventHandler(this.ProductosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProductosDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
