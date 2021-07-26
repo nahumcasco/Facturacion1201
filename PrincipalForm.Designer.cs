@@ -92,7 +92,7 @@ namespace Facturacion1201
             this.ribbonControlAdv1.QuickPanelVisible = false;
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem2;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem1;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
             this.ribbonControlAdv1.Size = new System.Drawing.Size(984, 163);
@@ -298,7 +298,7 @@ namespace Facturacion1201
             this.ClientestoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ClientestoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ClientestoolStripButton.Name = "ClientestoolStripButton";
-            this.ClientestoolStripButton.Size = new System.Drawing.Size(68, 94);
+            this.ClientestoolStripButton.Size = new System.Drawing.Size(68, 81);
             this.ClientestoolStripButton.Text = "Clientes";
             this.ClientestoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ClientestoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -345,7 +345,7 @@ namespace Facturacion1201
             this.FacturaciontoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FacturaciontoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FacturaciontoolStripButton.Name = "FacturaciontoolStripButton";
-            this.FacturaciontoolStripButton.Size = new System.Drawing.Size(71, 94);
+            this.FacturaciontoolStripButton.Size = new System.Drawing.Size(71, 81);
             this.FacturaciontoolStripButton.Text = "Facturación";
             this.FacturaciontoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.FacturaciontoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;

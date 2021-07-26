@@ -121,5 +121,38 @@ namespace Facturacion1201
             return dt;
         }
 
+        public bool EditarProducto(string codigo, string descripcion, int idcategoria, decimal precio, int existencia)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" UPDATE PRODUCTOS ");
+                sql.Append(" SET DESCRIPCION = @Descripcion, IDCATEGORIA = @IdCategoria, PRECIO = @Precio, EXISTENCIA = @Existencia ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        comando.Parameters.Add("@Descripcion", SqlDbType.NVarChar, 80).Value = descripcion;
+                        comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = idcategoria;
+                        comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = precio;
+                        comando.Parameters.Add("@Existencia", SqlDbType.Int).Value = existencia;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+           
+        }
+
+
     }
 }

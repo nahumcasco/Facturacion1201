@@ -29,6 +29,7 @@ namespace Facturacion1201
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.CodigoTextBox = new System.Windows.Forms.TextBox();
             this.DescripcionTextBox = new System.Windows.Forms.TextBox();
@@ -45,7 +46,9 @@ namespace Facturacion1201
             this.EliminarButton = new System.Windows.Forms.Button();
             this.CancelarButton = new System.Windows.Forms.Button();
             this.ProductosDataGridView = new System.Windows.Forms.DataGridView();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ProductosDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -152,9 +155,11 @@ namespace Facturacion1201
             this.ModificarButton.TabIndex = 11;
             this.ModificarButton.Text = "Modificar";
             this.ModificarButton.UseVisualStyleBackColor = true;
+            this.ModificarButton.Click += new System.EventHandler(this.ModificarButton_Click);
             // 
             // GuardarButton
             // 
+            this.GuardarButton.Enabled = false;
             this.GuardarButton.Location = new System.Drawing.Point(490, 166);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(95, 39);
@@ -165,6 +170,7 @@ namespace Facturacion1201
             // 
             // EliminarButton
             // 
+            this.EliminarButton.Enabled = false;
             this.EliminarButton.Location = new System.Drawing.Point(591, 166);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(95, 39);
@@ -174,12 +180,14 @@ namespace Facturacion1201
             // 
             // CancelarButton
             // 
+            this.CancelarButton.Enabled = false;
             this.CancelarButton.Location = new System.Drawing.Point(692, 166);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(95, 39);
             this.CancelarButton.TabIndex = 14;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.UseVisualStyleBackColor = true;
+            this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // ProductosDataGridView
             // 
@@ -188,6 +196,10 @@ namespace Facturacion1201
             this.ProductosDataGridView.Name = "ProductosDataGridView";
             this.ProductosDataGridView.Size = new System.Drawing.Size(801, 198);
             this.ProductosDataGridView.TabIndex = 15;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // ProductosForm
             // 
@@ -214,6 +226,7 @@ namespace Facturacion1201
             this.Text = "Productos";
             this.Load += new System.EventHandler(this.ProductosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProductosDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,5 +250,6 @@ namespace Facturacion1201
         private System.Windows.Forms.Button EliminarButton;
         private System.Windows.Forms.Button CancelarButton;
         private System.Windows.Forms.DataGridView ProductosDataGridView;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

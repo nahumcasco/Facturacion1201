@@ -48,6 +48,7 @@ namespace Facturacion1201
                 frmProductos = new ProductosForm();
                 frmProductos.MdiParent = this;
                 frmProductos.FormClosed += FrmProductos_FormClosed;
+                frmProductos.Show();
             }
             else
             {
