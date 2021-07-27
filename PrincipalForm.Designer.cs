@@ -288,7 +288,7 @@ namespace Facturacion1201
             this.toolStripEx3.Office12Mode = false;
             this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx3.Size = new System.Drawing.Size(39, 97);
+            this.toolStripEx3.Size = new System.Drawing.Size(426, 97);
             this.toolStripEx3.TabIndex = 0;
             // 
             // ClientestoolStripButton
@@ -298,7 +298,7 @@ namespace Facturacion1201
             this.ClientestoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.ClientestoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ClientestoolStripButton.Name = "ClientestoolStripButton";
-            this.ClientestoolStripButton.Size = new System.Drawing.Size(68, 81);
+            this.ClientestoolStripButton.Size = new System.Drawing.Size(68, 80);
             this.ClientestoolStripButton.Text = "Clientes";
             this.ClientestoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ClientestoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -335,7 +335,7 @@ namespace Facturacion1201
             this.toolStripEx4.Office12Mode = false;
             this.toolStripEx4.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx4.Size = new System.Drawing.Size(39, 97);
+            this.toolStripEx4.Size = new System.Drawing.Size(286, 97);
             this.toolStripEx4.TabIndex = 0;
             // 
             // FacturaciontoolStripButton

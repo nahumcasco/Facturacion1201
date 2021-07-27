@@ -64,13 +64,13 @@ namespace Facturacion1201
             return dt;
         }
 
-        public bool InsertarProducto(string codigo, string descripcion, int idcategoria, decimal precio, int existencia)
+        public bool InsertarProducto(string codigo, string descripcion, int idcategoria, decimal precio, int existencia, byte[] imagen)
         {
             try
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append(" INSERT INTO PRODUCTOS ");
-                sql.Append(" VALUES (@Codigo, @Descripcion, @IdCategoria, @Precio, @Existencia); ");
+                sql.Append(" VALUES (@Codigo, @Descripcion, @IdCategoria, @Precio, @Existencia, @Imagen); ");
 
                 using(SqlConnection _conexion = new SqlConnection(cadena))
                 {
@@ -83,6 +83,7 @@ namespace Facturacion1201
                         comando.Parameters.Add("@idcategoria", SqlDbType.Int).Value = idcategoria;
                         comando.Parameters.Add("@Precio", SqlDbType.Decimal).Value = precio;
                         comando.Parameters.Add("@Existencia", SqlDbType.Int).Value = existencia;
+                        comando.Parameters.Add("@Imagen", SqlDbType.Image).Value = imagen;
                         comando.ExecuteNonQuery();
                         return true;
                     }
@@ -153,6 +154,62 @@ namespace Facturacion1201
            
         }
 
+        public byte[] SeleccionarImagenproducto(string codigo)
+        {
+            byte[] _imagen = new byte[0];
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT IMAGEN FROM PRODUCTOS ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
 
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+
+                        SqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            _imagen = (byte[])dr["IMAGEN"];
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            return _imagen;
+        }
+
+        public bool EliminarProducto(string codigo)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" DELETE FROM PRODUCTOS ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

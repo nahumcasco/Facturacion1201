@@ -61,9 +61,14 @@ namespace Facturacion1201
             }
 
             BaseDatos bd = new BaseDatos();
+
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            ImagenPictureBox.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+
             if (operacion == "Nuevo")
             {
-                bd.InsertarProducto(CodigoTextBox.Text, DescripcionTextBox.Text, Convert.ToInt32(CategoriaComboBox.SelectedValue), Convert.ToDecimal(PrecioTextBox.Text), Convert.ToInt32(ExistenciaTextBox.Text));
+                bd.InsertarProducto(CodigoTextBox.Text, DescripcionTextBox.Text, Convert.ToInt32(CategoriaComboBox.SelectedValue), Convert.ToDecimal(PrecioTextBox.Text), Convert.ToInt32(ExistenciaTextBox.Text), ms.GetBuffer());
                 ListarProductos();
                 LimpiarControles();
                 DesabilitarControles();
@@ -118,6 +123,7 @@ namespace Facturacion1201
             DescripcionTextBox.Clear();
             PrecioTextBox.Clear();
             ExistenciaTextBox.Clear();
+            ImagenPictureBox.Image = null;
         }
 
         private void CancelarButton_Click(object sender, EventArgs e)
@@ -129,6 +135,9 @@ namespace Facturacion1201
         private void ModificarButton_Click(object sender, EventArgs e)
         {
             operacion = "Modificar";
+
+            BaseDatos bd = new BaseDatos();
+
             if (ProductosDataGridView.SelectedRows.Count > 0)
             {
                 CodigoTextBox.Text = ProductosDataGridView.CurrentRow.Cells["CODIGO"].Value.ToString();
@@ -136,6 +145,20 @@ namespace Facturacion1201
                 CategoriaComboBox.Text = ProductosDataGridView.CurrentRow.Cells["CATEGORIA"].Value.ToString();
                 PrecioTextBox.Text = ProductosDataGridView.CurrentRow.Cells["PRECIO"].Value.ToString();
                 ExistenciaTextBox.Text = ProductosDataGridView.CurrentRow.Cells["EXISTENCIA"].Value.ToString();
+
+                var temporal = bd.SeleccionarImagenproducto(ProductosDataGridView.CurrentRow.Cells["CODIGO"].Value.ToString());
+
+                if (temporal.Length > 0)
+                {
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream(temporal);
+                    ImagenPictureBox.Image = System.Drawing.Bitmap.FromStream(ms);
+                }
+                else
+                {
+                    ImagenPictureBox.Image = null;
+                }
+
+
                 HabilitarControles();
                 
             }
@@ -145,6 +168,46 @@ namespace Facturacion1201
             }
 
             
+        }
+
+        private void EliminarButton_Click(object sender, EventArgs e)
+        {
+            if (ProductosDataGridView.SelectedRows.Count > 0)
+            {
+                BaseDatos bd = new BaseDatos();
+                bool elimino = bd.EliminarProducto(ProductosDataGridView.CurrentRow.Cells[0].Value.ToString());
+                ListarProductos();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una fila del producto");
+            }
+        }
+
+        private void ImagenButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            DialogResult result = dialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                ImagenPictureBox.Image = Image.FromFile(dialog.FileName);
+            }
+
+
+        }
+
+        private void PrecioTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

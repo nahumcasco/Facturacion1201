@@ -47,14 +47,17 @@ namespace Facturacion1201
             this.CancelarButton = new System.Windows.Forms.Button();
             this.ProductosDataGridView = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ImagenPictureBox = new System.Windows.Forms.PictureBox();
+            this.ImagenButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ProductosDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagenPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 43);
+            this.label1.Location = new System.Drawing.Point(79, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 0;
@@ -79,7 +82,7 @@ namespace Facturacion1201
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 87);
+            this.label2.Location = new System.Drawing.Point(56, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 13);
             this.label2.TabIndex = 2;
@@ -88,7 +91,7 @@ namespace Facturacion1201
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 124);
+            this.label3.Location = new System.Drawing.Point(65, 124);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 4;
@@ -106,15 +109,16 @@ namespace Facturacion1201
             // PrecioTextBox
             // 
             this.PrecioTextBox.Enabled = false;
-            this.PrecioTextBox.Location = new System.Drawing.Point(517, 40);
+            this.PrecioTextBox.Location = new System.Drawing.Point(140, 161);
             this.PrecioTextBox.Name = "PrecioTextBox";
             this.PrecioTextBox.Size = new System.Drawing.Size(270, 20);
             this.PrecioTextBox.TabIndex = 7;
+            this.PrecioTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PrecioTextBox_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(471, 43);
+            this.label4.Location = new System.Drawing.Point(82, 164);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 6;
@@ -123,7 +127,7 @@ namespace Facturacion1201
             // ExistenciaTextBox
             // 
             this.ExistenciaTextBox.Enabled = false;
-            this.ExistenciaTextBox.Location = new System.Drawing.Point(517, 84);
+            this.ExistenciaTextBox.Location = new System.Drawing.Point(140, 205);
             this.ExistenciaTextBox.Name = "ExistenciaTextBox";
             this.ExistenciaTextBox.Size = new System.Drawing.Size(270, 20);
             this.ExistenciaTextBox.TabIndex = 9;
@@ -131,7 +135,7 @@ namespace Facturacion1201
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(453, 87);
+            this.label5.Location = new System.Drawing.Point(64, 208);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 8;
@@ -139,7 +143,7 @@ namespace Facturacion1201
             // 
             // NuevoButton
             // 
-            this.NuevoButton.Location = new System.Drawing.Point(288, 166);
+            this.NuevoButton.Location = new System.Drawing.Point(190, 281);
             this.NuevoButton.Name = "NuevoButton";
             this.NuevoButton.Size = new System.Drawing.Size(95, 39);
             this.NuevoButton.TabIndex = 10;
@@ -149,7 +153,7 @@ namespace Facturacion1201
             // 
             // ModificarButton
             // 
-            this.ModificarButton.Location = new System.Drawing.Point(389, 166);
+            this.ModificarButton.Location = new System.Drawing.Point(291, 281);
             this.ModificarButton.Name = "ModificarButton";
             this.ModificarButton.Size = new System.Drawing.Size(95, 39);
             this.ModificarButton.TabIndex = 11;
@@ -160,7 +164,7 @@ namespace Facturacion1201
             // GuardarButton
             // 
             this.GuardarButton.Enabled = false;
-            this.GuardarButton.Location = new System.Drawing.Point(490, 166);
+            this.GuardarButton.Location = new System.Drawing.Point(392, 281);
             this.GuardarButton.Name = "GuardarButton";
             this.GuardarButton.Size = new System.Drawing.Size(95, 39);
             this.GuardarButton.TabIndex = 12;
@@ -170,18 +174,18 @@ namespace Facturacion1201
             // 
             // EliminarButton
             // 
-            this.EliminarButton.Enabled = false;
-            this.EliminarButton.Location = new System.Drawing.Point(591, 166);
+            this.EliminarButton.Location = new System.Drawing.Point(493, 281);
             this.EliminarButton.Name = "EliminarButton";
             this.EliminarButton.Size = new System.Drawing.Size(95, 39);
             this.EliminarButton.TabIndex = 13;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // CancelarButton
             // 
             this.CancelarButton.Enabled = false;
-            this.CancelarButton.Location = new System.Drawing.Point(692, 166);
+            this.CancelarButton.Location = new System.Drawing.Point(594, 281);
             this.CancelarButton.Name = "CancelarButton";
             this.CancelarButton.Size = new System.Drawing.Size(95, 39);
             this.CancelarButton.TabIndex = 14;
@@ -191,21 +195,46 @@ namespace Facturacion1201
             // 
             // ProductosDataGridView
             // 
+            this.ProductosDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductosDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductosDataGridView.Location = new System.Drawing.Point(0, 238);
+            this.ProductosDataGridView.Location = new System.Drawing.Point(0, 326);
             this.ProductosDataGridView.Name = "ProductosDataGridView";
-            this.ProductosDataGridView.Size = new System.Drawing.Size(801, 198);
+            this.ProductosDataGridView.Size = new System.Drawing.Size(712, 157);
             this.ProductosDataGridView.TabIndex = 15;
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ImagenPictureBox
+            // 
+            this.ImagenPictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ImagenPictureBox.Location = new System.Drawing.Point(451, 40);
+            this.ImagenPictureBox.Name = "ImagenPictureBox";
+            this.ImagenPictureBox.Size = new System.Drawing.Size(238, 185);
+            this.ImagenPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ImagenPictureBox.TabIndex = 16;
+            this.ImagenPictureBox.TabStop = false;
+            // 
+            // ImagenButton
+            // 
+            this.ImagenButton.Location = new System.Drawing.Point(629, 226);
+            this.ImagenButton.Name = "ImagenButton";
+            this.ImagenButton.Size = new System.Drawing.Size(60, 23);
+            this.ImagenButton.TabIndex = 17;
+            this.ImagenButton.Text = "Imagen...";
+            this.ImagenButton.UseVisualStyleBackColor = true;
+            this.ImagenButton.Click += new System.EventHandler(this.ImagenButton_Click);
+            // 
             // ProductosForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 436);
+            this.ClientSize = new System.Drawing.Size(712, 483);
+            this.Controls.Add(this.ImagenButton);
+            this.Controls.Add(this.ImagenPictureBox);
             this.Controls.Add(this.ProductosDataGridView);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.EliminarButton);
@@ -227,6 +256,7 @@ namespace Facturacion1201
             this.Load += new System.EventHandler(this.ProductosForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProductosDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImagenPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,5 +281,7 @@ namespace Facturacion1201
         private System.Windows.Forms.Button CancelarButton;
         private System.Windows.Forms.DataGridView ProductosDataGridView;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox ImagenPictureBox;
+        private System.Windows.Forms.Button ImagenButton;
     }
 }
