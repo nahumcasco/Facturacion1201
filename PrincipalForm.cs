@@ -60,5 +60,14 @@ namespace Facturacion1201
         {
             frmProductos = null;
         }
+
+        private void PrincipalForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+            Application.Exit();
+        }
     }
 }

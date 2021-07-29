@@ -345,7 +345,7 @@ namespace Facturacion1201
             this.FacturaciontoolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.FacturaciontoolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.FacturaciontoolStripButton.Name = "FacturaciontoolStripButton";
-            this.FacturaciontoolStripButton.Size = new System.Drawing.Size(71, 81);
+            this.FacturaciontoolStripButton.Size = new System.Drawing.Size(71, 80);
             this.FacturaciontoolStripButton.Text = "Facturación";
             this.FacturaciontoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.FacturaciontoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -376,6 +376,7 @@ namespace Facturacion1201
             this.Name = "PrincipalForm";
             this.Text = "Facturación 1201";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PrincipalForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).EndInit();
             this.ribbonControlAdv1.ResumeLayout(false);
             this.ribbonControlAdv1.PerformLayout();

@@ -18,7 +18,7 @@ namespace Facturacion1201
             try
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append(" SELECT 1 FROM USUARIOS WHERE CODIGO = @Codigo AND CLAVE = @Clave; ");
+                sql.Append(" SELECT 1 FROM USUARIOS WHERE CODIGO = @Codigo AND CLAVE = @Clave AND ESTAACTIVO = 1; ");
 
                 using (SqlConnection _conexion = new SqlConnection(cadena))
                 {
@@ -192,6 +192,119 @@ namespace Facturacion1201
             {
                 StringBuilder sql = new StringBuilder();
                 sql.Append(" DELETE FROM PRODUCTOS ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+    
+    
+        public bool InsertarUsuario(string codigo, string nombre, string clave)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" INSERT INTO USUARIOS ");
+                sql.Append(" VALUES (@Codigo, @Clave, @Nombre, @EstaActivo); ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 50).Value = nombre;
+                        comando.Parameters.Add("@Clave", SqlDbType.NVarChar, 30).Value = clave;
+                        comando.Parameters.Add("@EstaActivo", SqlDbType.Bit).Value = true;
+
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+    
+        public bool EditarUsuario(string codigo, string nombre, string clave, bool estado)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" UPDATE USUARIOS ");
+                sql.Append(" SET NOMBRE = @Nombre, CLAVE = @Clave, ESTAACTIVO = @EstaActivo ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 50).Value = nombre;
+                        comando.Parameters.Add("@Clave", SqlDbType.NVarChar, 30).Value = clave;
+                        comando.Parameters.Add("@EstaActivo", SqlDbType.Bit).Value = estado;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
+        public DataTable SeleccionarUsuarios()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT CODIGO, NOMBRE, CLAVE, ESTAACTIVO FROM USUARIOS ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return dt;
+        }
+    
+        public bool EliminarUsuario(string codigo)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" DELETE FROM USUARIOS ");
                 sql.Append(" WHERE CODIGO = @Codigo ");
 
                 using (SqlConnection _conexion = new SqlConnection(cadena))
