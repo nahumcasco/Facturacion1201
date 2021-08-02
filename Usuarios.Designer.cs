@@ -126,6 +126,7 @@ namespace Facturacion1201
             this.CancelarButton.TabIndex = 19;
             this.CancelarButton.Text = "Cancelar";
             this.CancelarButton.UseVisualStyleBackColor = true;
+            this.CancelarButton.Click += new System.EventHandler(this.CancelarButton_Click);
             // 
             // EliminarButton
             // 

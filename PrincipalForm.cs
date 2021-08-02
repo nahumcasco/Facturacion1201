@@ -18,6 +18,7 @@ namespace Facturacion1201
 
         Usuarios frmUsuarios;
         ProductosForm frmProductos;
+        ClientesForm frmClientes;
         private void UsuariostoolStripButton_Click(object sender, EventArgs e)
         {
             if (frmUsuarios == null)
@@ -68,6 +69,26 @@ namespace Facturacion1201
                 e.Cancel = true;
             }
             Application.Exit();
+        }
+
+        private void ClientestoolStripButton_Click(object sender, EventArgs e)
+        {
+            if (frmClientes == null)
+            {
+                frmClientes = new ClientesForm();
+                frmClientes.MdiParent = this;
+                frmClientes.FormClosed += FrmClientes_FormClosed;
+                frmClientes.Show();
+            }
+            else
+            {
+                frmClientes.Activate();
+            }
+        }
+
+        private void FrmClientes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmClientes = null;
         }
     }
 }

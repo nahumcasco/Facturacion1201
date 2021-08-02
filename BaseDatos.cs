@@ -324,5 +324,119 @@ namespace Facturacion1201
                 return false;
             }
         }
+
+        public bool InsertarCliente(string identidad, string nombre, int telefono, string direccion, byte[] imagen)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" INSERT INTO CLIENTES ");
+                sql.Append(" VALUES (@Identidad, @Nombre, @Telefono, @Direccion, @Imagen);");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Identidad", SqlDbType.NVarChar, 20).Value = identidad;
+                        comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 50).Value = nombre;
+                        comando.Parameters.Add("@Telefono", SqlDbType.Int).Value = telefono;
+                        comando.Parameters.Add("@Direccion", SqlDbType.NVarChar, 80).Value = direccion;
+                        comando.Parameters.Add("@Imagen", SqlDbType.Image).Value = imagen;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool EditarCliente(int id, string identidad, string nombre, int telefono, string direccion, byte[] imagen)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" UPDATE CLIENTES ");
+                sql.Append(" SET IDENTIDAD = @Identidad, NOMBRE = @Nombre, TELEFONO = @Telefono, DIRECCION = @Direccion, IMAGEN = @Imagen ");
+                sql.Append(" WHERE ID = @Id ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                        comando.Parameters.Add("@Identidad", SqlDbType.NVarChar, 20).Value = identidad;
+                        comando.Parameters.Add("@Nombre", SqlDbType.NVarChar, 50).Value = nombre;
+                        comando.Parameters.Add("@Telefono", SqlDbType.Int).Value = telefono;
+                        comando.Parameters.Add("@Direccion", SqlDbType.NVarChar, 80).Value = direccion;
+                        comando.Parameters.Add("@Imagen", SqlDbType.Image).Value = imagen;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public DataTable SeleccionarClientes()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT * FROM CLIENTES ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return dt;
+        }
+    
+        public bool EliminarCliente(int id)
+        {
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" DELETE FROM CLIENTES ");
+                sql.Append(" WHERE ID = @Id ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                        comando.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+    
     }
 }

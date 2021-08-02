@@ -122,5 +122,11 @@ namespace Facturacion1201
                 MessageBox.Show("Debe seleccionar un usuario");
             }
         }
+
+        private void CancelarButton_Click(object sender, EventArgs e)
+        {
+            DesabilitarControles();
+            LimpiarControles();
+        }
     }
 }
