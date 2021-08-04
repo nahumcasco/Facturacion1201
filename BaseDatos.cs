@@ -437,6 +437,38 @@ namespace Facturacion1201
                 return false;
             }
         }
-    
+
+        public byte[] SeleccionarImagenCliente(int id)
+        {
+            byte[] _imagen = new byte[0];
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT IMAGEN FROM CLIENTES ");
+                sql.Append(" WHERE ID = @Id ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                        SqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            _imagen = (byte[])dr["IMAGEN"];
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return _imagen;
+        }
+
     }
 }

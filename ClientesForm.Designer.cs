@@ -29,6 +29,7 @@ namespace Facturacion1201
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.IdTextBox = new System.Windows.Forms.TextBox();
             this.IdentidadtextBox = new System.Windows.Forms.TextBox();
@@ -45,10 +46,12 @@ namespace Facturacion1201
             this.EliminarButton = new System.Windows.Forms.Button();
             this.GuardarButton = new System.Windows.Forms.Button();
             this.ModificarButton = new System.Windows.Forms.Button();
-            this.NuevoButton = new System.Windows.Forms.Button();
             this.Imagenbutton = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.NuevoButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClientesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -138,6 +141,7 @@ namespace Facturacion1201
             // 
             // ImagenPictureBox
             // 
+            this.ImagenPictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ImagenPictureBox.Location = new System.Drawing.Point(379, 35);
             this.ImagenPictureBox.Name = "ImagenPictureBox";
             this.ImagenPictureBox.Size = new System.Drawing.Size(226, 183);
@@ -184,6 +188,7 @@ namespace Facturacion1201
             this.GuardarButton.TabIndex = 23;
             this.GuardarButton.Text = "Guardar";
             this.GuardarButton.UseVisualStyleBackColor = true;
+            this.GuardarButton.Click += new System.EventHandler(this.GuardarButton_Click);
             // 
             // ModificarButton
             // 
@@ -193,15 +198,7 @@ namespace Facturacion1201
             this.ModificarButton.TabIndex = 22;
             this.ModificarButton.Text = "Modificar";
             this.ModificarButton.UseVisualStyleBackColor = true;
-            // 
-            // NuevoButton
-            // 
-            this.NuevoButton.Location = new System.Drawing.Point(106, 253);
-            this.NuevoButton.Name = "NuevoButton";
-            this.NuevoButton.Size = new System.Drawing.Size(95, 39);
-            this.NuevoButton.TabIndex = 21;
-            this.NuevoButton.Text = "Nuevo";
-            this.NuevoButton.UseVisualStyleBackColor = true;
+            this.ModificarButton.Click += new System.EventHandler(this.ModificarButton_Click);
             // 
             // Imagenbutton
             // 
@@ -213,18 +210,32 @@ namespace Facturacion1201
             this.Imagenbutton.UseVisualStyleBackColor = true;
             this.Imagenbutton.Click += new System.EventHandler(this.Imagenbutton_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // NuevoButton
+            // 
+            this.NuevoButton.Location = new System.Drawing.Point(109, 253);
+            this.NuevoButton.Name = "NuevoButton";
+            this.NuevoButton.Size = new System.Drawing.Size(92, 39);
+            this.NuevoButton.TabIndex = 28;
+            this.NuevoButton.Text = "Nuevo";
+            this.NuevoButton.UseVisualStyleBackColor = true;
+            this.NuevoButton.Click += new System.EventHandler(this.NuevoButton_Click_1);
+            // 
             // ClientesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 475);
+            this.Controls.Add(this.NuevoButton);
             this.Controls.Add(this.Imagenbutton);
             this.Controls.Add(this.ClientesDataGridView);
             this.Controls.Add(this.CancelarButton);
             this.Controls.Add(this.EliminarButton);
             this.Controls.Add(this.GuardarButton);
             this.Controls.Add(this.ModificarButton);
-            this.Controls.Add(this.NuevoButton);
             this.Controls.Add(this.ImagenPictureBox);
             this.Controls.Add(this.DirecciontextBox);
             this.Controls.Add(this.label5);
@@ -236,12 +247,12 @@ namespace Facturacion1201
             this.Controls.Add(this.label2);
             this.Controls.Add(this.IdTextBox);
             this.Controls.Add(this.label1);
-            this.Enabled = false;
             this.Name = "ClientesForm";
             this.Text = "Clientes";
             this.Load += new System.EventHandler(this.ClientesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ImagenPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ClientesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,7 +276,8 @@ namespace Facturacion1201
         private System.Windows.Forms.Button EliminarButton;
         private System.Windows.Forms.Button GuardarButton;
         private System.Windows.Forms.Button ModificarButton;
-        private System.Windows.Forms.Button NuevoButton;
         private System.Windows.Forms.Button Imagenbutton;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button NuevoButton;
     }
 }
