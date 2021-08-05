@@ -154,5 +154,30 @@ namespace Facturacion1201
             
 
         }
+
+        private void EliminarButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ClientesDataGridView.SelectedRows.Count > 0)
+                {
+                    bool elimino = bd.EliminarCliente(Convert.ToInt32(ClientesDataGridView.CurrentRow.Cells["ID"].Value.ToString()));
+
+                    if (elimino)
+                    {
+                        ListarClientes();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un error, al eliminar el cliente");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hubo un error, al eliminar el cliente");
+            }
+            
+        }
     }
 }

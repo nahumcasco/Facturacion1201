@@ -178,6 +178,7 @@ namespace Facturacion1201
             this.EliminarButton.TabIndex = 24;
             this.EliminarButton.Text = "Eliminar";
             this.EliminarButton.UseVisualStyleBackColor = true;
+            this.EliminarButton.Click += new System.EventHandler(this.EliminarButton_Click);
             // 
             // GuardarButton
             // 

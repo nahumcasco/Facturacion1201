@@ -92,7 +92,7 @@ namespace Facturacion1201
             this.ribbonControlAdv1.QuickPanelVisible = false;
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.None;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem3;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem4;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
             this.ribbonControlAdv1.Size = new System.Drawing.Size(984, 163);
@@ -350,6 +350,7 @@ namespace Facturacion1201
             this.FacturaciontoolStripButton.Text = "Facturación";
             this.FacturaciontoolStripButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.FacturaciontoolStripButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.FacturaciontoolStripButton.Click += new System.EventHandler(this.FacturaciontoolStripButton_Click);
             // 
             // tabbedMDIManager1
             // 
