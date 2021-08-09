@@ -470,5 +470,93 @@ namespace Facturacion1201
             return _imagen;
         }
 
+        public string GetNombreUsuario(string codigoUsuario)
+        {
+            string nombre = string.Empty;
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT NOMBRE FROM USUARIOS ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigoUsuario;
+                        SqlDataReader dr =  comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            nombre = dr["NOMBRE"].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+            return nombre;
+        }
+
+        public List<KeyValuePair<int, string>> GetClienteParaFactura(string identidad)
+        {
+            List<KeyValuePair<int, string>> miLista = new List<KeyValuePair<int, string>>();
+
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT ID, NOMBRE FROM CLIENTES ");
+                sql.Append(" WHERE IDENTIDAD = @Identidad ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Identidad", SqlDbType.NVarChar, 20).Value = identidad;
+
+                        SqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            miLista.Add(new KeyValuePair<int, string>(Convert.ToInt32(dr["ID"].ToString()), dr["NOMBRE"].ToString()));
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            return miLista;
+        }
+
+        public DataTable SeleccionarClientesPorNombre(string nombre)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT * FROM CLIENTES  WHERE NOMBRE LIKE ('%" + nombre + "%') ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return dt;
+        }
     }
 }

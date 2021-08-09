@@ -31,21 +31,20 @@ namespace Facturacion1201
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.FechaDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
             this.UsuarioTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.FechaDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.IdentidadMaskedEditBox = new Syncfusion.Windows.Forms.Tools.MaskedEditBox();
             this.NombreClienteTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.BuscarClienteButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.BuscarProductoButton = new System.Windows.Forms.Button();
             this.DescripcionProductoTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.CodigoProductoTextBox = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.DetalleDataGridView = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.SubTotalTextBox = new System.Windows.Forms.TextBox();
@@ -58,12 +57,13 @@ namespace Facturacion1201
             this.NuevaFacturaButton = new System.Windows.Forms.Button();
             this.GuardarFacturaButton = new System.Windows.Forms.Button();
             this.CancelarFacturabutton = new System.Windows.Forms.Button();
-            this.IdentidadMaskedEditBox = new Syncfusion.Windows.Forms.Tools.MaskedEditBox();
+            this.BuscarProductoButton = new System.Windows.Forms.Button();
+            this.BuscarClienteButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IdentidadMaskedEditBox)).BeginInit();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DetalleDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.IdentidadMaskedEditBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -73,9 +73,9 @@ namespace Facturacion1201
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(378, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 29);
+            this.label1.Size = new System.Drawing.Size(113, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Factura";
+            this.label1.Text = "Facturas";
             // 
             // groupBox1
             // 
@@ -91,23 +91,13 @@ namespace Facturacion1201
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
-            // label2
+            // UsuarioTextBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 16);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Fecha:";
-            // 
-            // FechaDateTimePicker
-            // 
-            this.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.FechaDateTimePicker.Location = new System.Drawing.Point(74, 23);
-            this.FechaDateTimePicker.Name = "FechaDateTimePicker";
-            this.FechaDateTimePicker.Size = new System.Drawing.Size(110, 20);
-            this.FechaDateTimePicker.TabIndex = 1;
+            this.UsuarioTextBox.Location = new System.Drawing.Point(674, 23);
+            this.UsuarioTextBox.Name = "UsuarioTextBox";
+            this.UsuarioTextBox.ReadOnly = true;
+            this.UsuarioTextBox.Size = new System.Drawing.Size(238, 20);
+            this.UsuarioTextBox.TabIndex = 3;
             // 
             // label3
             // 
@@ -119,13 +109,23 @@ namespace Facturacion1201
             this.label3.TabIndex = 2;
             this.label3.Text = "Usuario:";
             // 
-            // UsuarioTextBox
+            // FechaDateTimePicker
             // 
-            this.UsuarioTextBox.Location = new System.Drawing.Point(674, 23);
-            this.UsuarioTextBox.Name = "UsuarioTextBox";
-            this.UsuarioTextBox.ReadOnly = true;
-            this.UsuarioTextBox.Size = new System.Drawing.Size(238, 20);
-            this.UsuarioTextBox.TabIndex = 3;
+            this.FechaDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.FechaDateTimePicker.Location = new System.Drawing.Point(74, 23);
+            this.FechaDateTimePicker.Name = "FechaDateTimePicker";
+            this.FechaDateTimePicker.Size = new System.Drawing.Size(110, 20);
+            this.FechaDateTimePicker.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(19, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 16);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Fecha:";
             // 
             // groupBox2
             // 
@@ -143,15 +143,16 @@ namespace Facturacion1201
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del Cliente";
             // 
-            // label4
+            // IdentidadMaskedEditBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 16);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Identidad:";
+            this.IdentidadMaskedEditBox.BeforeTouchSize = new System.Drawing.Size(189, 20);
+            this.IdentidadMaskedEditBox.Location = new System.Drawing.Point(22, 48);
+            this.IdentidadMaskedEditBox.Mask = "####-####-#####";
+            this.IdentidadMaskedEditBox.MaxLength = 15;
+            this.IdentidadMaskedEditBox.Name = "IdentidadMaskedEditBox";
+            this.IdentidadMaskedEditBox.Size = new System.Drawing.Size(189, 20);
+            this.IdentidadMaskedEditBox.TabIndex = 9;
+            this.IdentidadMaskedEditBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.IdentidadMaskedEditBox_KeyPress);
             // 
             // NombreClienteTextBox
             // 
@@ -170,14 +171,15 @@ namespace Facturacion1201
             this.label5.TabIndex = 6;
             this.label5.Text = "Nombre:";
             // 
-            // BuscarClienteButton
+            // label4
             // 
-            this.BuscarClienteButton.Image = global::Facturacion1201.Properties.Resources.lupa;
-            this.BuscarClienteButton.Location = new System.Drawing.Point(525, 44);
-            this.BuscarClienteButton.Name = "BuscarClienteButton";
-            this.BuscarClienteButton.Size = new System.Drawing.Size(34, 27);
-            this.BuscarClienteButton.TabIndex = 8;
-            this.BuscarClienteButton.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(19, 27);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 16);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Identidad:";
             // 
             // groupBox3
             // 
@@ -195,21 +197,22 @@ namespace Facturacion1201
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Producto";
             // 
-            // BuscarProductoButton
-            // 
-            this.BuscarProductoButton.Image = global::Facturacion1201.Properties.Resources.lupa;
-            this.BuscarProductoButton.Location = new System.Drawing.Point(525, 37);
-            this.BuscarProductoButton.Name = "BuscarProductoButton";
-            this.BuscarProductoButton.Size = new System.Drawing.Size(34, 27);
-            this.BuscarProductoButton.TabIndex = 13;
-            this.BuscarProductoButton.UseVisualStyleBackColor = true;
-            // 
             // DescripcionProductoTextBox
             // 
             this.DescripcionProductoTextBox.Location = new System.Drawing.Point(217, 41);
             this.DescripcionProductoTextBox.Name = "DescripcionProductoTextBox";
             this.DescripcionProductoTextBox.Size = new System.Drawing.Size(304, 20);
             this.DescripcionProductoTextBox.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(19, 20);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 16);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Codigo:";
             // 
             // label6
             // 
@@ -227,16 +230,6 @@ namespace Facturacion1201
             this.CodigoProductoTextBox.Name = "CodigoProductoTextBox";
             this.CodigoProductoTextBox.Size = new System.Drawing.Size(162, 20);
             this.CodigoProductoTextBox.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(19, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 16);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Codigo:";
             // 
             // DetalleDataGridView
             // 
@@ -355,15 +348,24 @@ namespace Facturacion1201
             this.CancelarFacturabutton.Text = "Cancelar";
             this.CancelarFacturabutton.UseVisualStyleBackColor = true;
             // 
-            // IdentidadMaskedEditBox
+            // BuscarProductoButton
             // 
-            this.IdentidadMaskedEditBox.BeforeTouchSize = new System.Drawing.Size(189, 20);
-            this.IdentidadMaskedEditBox.Location = new System.Drawing.Point(22, 48);
-            this.IdentidadMaskedEditBox.Mask = "####-####-####";
-            this.IdentidadMaskedEditBox.MaxLength = 14;
-            this.IdentidadMaskedEditBox.Name = "IdentidadMaskedEditBox";
-            this.IdentidadMaskedEditBox.Size = new System.Drawing.Size(189, 20);
-            this.IdentidadMaskedEditBox.TabIndex = 9;
+            this.BuscarProductoButton.Image = global::Facturacion1201.Properties.Resources.lupa;
+            this.BuscarProductoButton.Location = new System.Drawing.Point(525, 37);
+            this.BuscarProductoButton.Name = "BuscarProductoButton";
+            this.BuscarProductoButton.Size = new System.Drawing.Size(34, 27);
+            this.BuscarProductoButton.TabIndex = 13;
+            this.BuscarProductoButton.UseVisualStyleBackColor = true;
+            // 
+            // BuscarClienteButton
+            // 
+            this.BuscarClienteButton.Image = global::Facturacion1201.Properties.Resources.lupa;
+            this.BuscarClienteButton.Location = new System.Drawing.Point(525, 44);
+            this.BuscarClienteButton.Name = "BuscarClienteButton";
+            this.BuscarClienteButton.Size = new System.Drawing.Size(34, 27);
+            this.BuscarClienteButton.TabIndex = 8;
+            this.BuscarClienteButton.UseVisualStyleBackColor = true;
+            this.BuscarClienteButton.Click += new System.EventHandler(this.BuscarClienteButton_Click);
             // 
             // FacturaForm
             // 
@@ -388,14 +390,15 @@ namespace Facturacion1201
             this.Controls.Add(this.label1);
             this.Name = "FacturaForm";
             this.Text = "Factura";
+            this.Load += new System.EventHandler(this.FacturaForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IdentidadMaskedEditBox)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DetalleDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.IdentidadMaskedEditBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

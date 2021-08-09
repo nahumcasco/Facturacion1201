@@ -16,6 +16,8 @@ namespace Facturacion1201
             InitializeComponent();
         }
 
+        public string CodigoUsuario;
+
         Usuarios frmUsuarios;
         ProductosForm frmProductos;
         ClientesForm frmClientes;
@@ -97,6 +99,7 @@ namespace Facturacion1201
             if (frmFactura == null)
             {
                 frmFactura = new FacturaForm();
+                frmFactura.CodigoUsuario = CodigoUsuario;
                 frmFactura.MdiParent = this;
                 frmFactura.FormClosed += FrmFactura_FormClosed;
                 frmFactura.Show();

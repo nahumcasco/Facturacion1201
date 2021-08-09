@@ -47,6 +47,7 @@ namespace Facturacion1201
             if (_base.ValidarUsuario(UsuarioTextBox.Text, ContrasenaTextBox.Text))
             {
                 PrincipalForm formulario = new PrincipalForm();
+                formulario.CodigoUsuario = UsuarioTextBox.Text;
                 this.Hide();
                 formulario.Show();
             }
