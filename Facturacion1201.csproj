@@ -62,6 +62,8 @@
     <Compile Include="ClientesForm.Designer.cs">
       <DependentUpon>ClientesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetalleFactura.cs" />
+    <Compile Include="Factura.cs" />
     <Compile Include="FacturaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +82,7 @@
     <Compile Include="PrincipalForm.Designer.cs">
       <DependentUpon>PrincipalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Producto.cs" />
     <Compile Include="ProductosForm.cs">
       <SubType>Form</SubType>
     </Compile>

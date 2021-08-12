@@ -23,7 +23,7 @@ namespace Facturacion1201
                 using (SqlConnection _conexion = new SqlConnection(cadena))
                 {
                     _conexion.Open();
-                    using(SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
                     {
                         comando.CommandType = CommandType.Text;
                         comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
@@ -50,7 +50,7 @@ namespace Facturacion1201
                 using (SqlConnection _conexion = new SqlConnection(cadena))
                 {
                     _conexion.Open();
-                    using(SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
                     {
                         comando.CommandType = CommandType.Text;
                         SqlDataReader dr = comando.ExecuteReader();
@@ -72,7 +72,7 @@ namespace Facturacion1201
                 sql.Append(" INSERT INTO PRODUCTOS ");
                 sql.Append(" VALUES (@Codigo, @Descripcion, @IdCategoria, @Precio, @Existencia, @Imagen); ");
 
-                using(SqlConnection _conexion = new SqlConnection(cadena))
+                using (SqlConnection _conexion = new SqlConnection(cadena))
                 {
                     _conexion.Open();
                     using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
@@ -151,7 +151,7 @@ namespace Facturacion1201
             {
                 return false;
             }
-           
+
         }
 
         public byte[] SeleccionarImagenproducto(string codigo)
@@ -181,7 +181,7 @@ namespace Facturacion1201
             }
             catch (Exception)
             {
-                
+
             }
             return _imagen;
         }
@@ -211,8 +211,8 @@ namespace Facturacion1201
                 return false;
             }
         }
-    
-    
+
+
         public bool InsertarUsuario(string codigo, string nombre, string clave)
         {
             try
@@ -242,7 +242,7 @@ namespace Facturacion1201
                 return false;
             }
         }
-    
+
         public bool EditarUsuario(string codigo, string nombre, string clave, bool estado)
         {
             try
@@ -298,7 +298,7 @@ namespace Facturacion1201
             }
             return dt;
         }
-    
+
         public bool EliminarUsuario(string codigo)
         {
             try
@@ -411,7 +411,7 @@ namespace Facturacion1201
             }
             return dt;
         }
-    
+
         public bool EliminarCliente(int id)
         {
             try
@@ -486,7 +486,7 @@ namespace Facturacion1201
                     {
                         comando.CommandType = CommandType.Text;
                         comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigoUsuario;
-                        SqlDataReader dr =  comando.ExecuteReader();
+                        SqlDataReader dr = comando.ExecuteReader();
                         if (dr.Read())
                         {
                             nombre = dr["NOMBRE"].ToString();
@@ -496,7 +496,7 @@ namespace Facturacion1201
             }
             catch (Exception)
             {
-                
+
             }
             return nombre;
         }
@@ -558,5 +558,139 @@ namespace Facturacion1201
             }
             return dt;
         }
+
+        public Producto GetProdoctoPorCodigo(string codigo)
+        {
+            Producto _producto = new Producto();
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT CODIGO, DESCRIPCION, PRECIO, EXISTENCIA FROM PRODUCTOS WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigo;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            _producto.Codigo = dr["CODIGO"].ToString();
+                            _producto.Descripcion = dr["DESCRIPCION"].ToString();
+                            _producto.Precio = Convert.ToDecimal(dr["PRECIO"]);
+                            _producto.Existencia = Convert.ToInt32(dr["EXISTENCIA"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            return _producto;
+        }
+
+
+        public int GetIdUsuario(string codigoUsuario)
+        {
+            int id = 0;
+            try
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(" SELECT ID FROM USUARIOS ");
+                sql.Append(" WHERE CODIGO = @Codigo ");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    _conexion.Open();
+                    using (SqlCommand comando = new SqlCommand(sql.ToString(), _conexion))
+                    {
+                        comando.CommandType = CommandType.Text;
+                        comando.Parameters.Add("@Codigo", SqlDbType.NVarChar, 30).Value = codigoUsuario;
+                        SqlDataReader dr = comando.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            id = (int)dr["ID"];
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            return id;
+        }
+
+
+        public async Task<bool> InsertarFacturaAsync(Factura _factura, List<DetalleFactura> _detalleFacturaList)
+        {
+            try
+            {
+                StringBuilder sqlF = new StringBuilder();
+                sqlF.Append(" INSERT INTO FACTURA ");
+                sqlF.Append(" VALUES (@IdCliente, @Fecha, @IdUsuario, @SubTotal, @Descuento, @Impuesto, @Total);");
+                sqlF.Append(" SELECT SCOPE_IDENTITY() ");
+
+                StringBuilder sqlDF = new StringBuilder();
+                sqlF.Append(" INSERT INTO DETALLEFACTURA ");
+                sqlF.Append(" VALUES (@IdFactura, @CodigoProducto, @Cantidad, @Precio);");
+
+                using (SqlConnection _conexion = new SqlConnection(cadena))
+                {
+                    await _conexion.OpenAsync();
+
+                    SqlTransaction transaccion = await Task.Run<SqlTransaction>(
+                        () => _conexion.BeginTransaction(IsolationLevel.ReadCommitted)
+                        );
+
+                    try
+                    {
+                        SqlCommand comando1 = new SqlCommand(sqlF.ToString(), _conexion, transaccion);
+                        comando1.CommandType = CommandType.Text;
+
+                        
+
+                        comando1.Parameters.Add("@IdCliente", SqlDbType.Int).Value = _factura.IdCliente;
+                        comando1.Parameters.Add("@Fecha", SqlDbType.DateTime).Value = _factura.Fecha;
+                        comando1.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = _factura.IdUsuario;
+                        comando1.Parameters.Add("@SubTotal", SqlDbType.Decimal).Value = _factura.SubTotal;
+                        comando1.Parameters.Add("@Descuento", SqlDbType.Decimal).Value = _factura.Descuento;
+                        comando1.Parameters.Add("@Impuesto", SqlDbType.Decimal).Value = _factura.Impuesto;
+                        comando1.Parameters.Add("@Total", SqlDbType.Decimal).Value = _factura.Total;
+                        comando1.Parameters.Add("@IdFactura", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+                        int idFactura = 0;
+                        idFactura =  Convert.ToInt32(comando1.ExecuteScalar());
+
+                        foreach (var item in _detalleFacturaList)
+                        {
+                            SqlCommand comando2 = new SqlCommand(sqlDF.ToString(), _conexion, transaccion);
+                            comando2.CommandType = CommandType.Text;
+
+                            comando2.Parameters.Add("@IdFactura", SqlDbType.Int).Value = idFactura;
+                            comando2.Parameters.Add("@CodigoProducto", SqlDbType.NVarChar, 30).Value = item.Codigo;
+                            comando2.Parameters.Add("@Cantidad", SqlDbType.Int).Value = item.Cantidad;
+                            comando2.Parameters.Add("@Precio", SqlDbType.Decimal).Value = item.Precio;
+                            await comando2.ExecuteNonQueryAsync();
+                        }
+                        await Task.Run(() => transaccion.Commit());
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        transaccion.Rollback();
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
     }
 }
