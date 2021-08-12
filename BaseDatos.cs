@@ -630,12 +630,12 @@ namespace Facturacion1201
             {
                 StringBuilder sqlF = new StringBuilder();
                 sqlF.Append(" INSERT INTO FACTURA ");
-                sqlF.Append(" VALUES (@IdCliente, @Fecha, @IdUsuario, @SubTotal, @Descuento, @Impuesto, @Total);");
+                sqlF.Append(" VALUES (@IdCliente, @IdUsuario, @Fecha, @SubTotal, @Descuento, @Impuesto, @Total);");
                 sqlF.Append(" SELECT SCOPE_IDENTITY() ");
 
                 StringBuilder sqlDF = new StringBuilder();
-                sqlF.Append(" INSERT INTO DETALLEFACTURA ");
-                sqlF.Append(" VALUES (@IdFactura, @CodigoProducto, @Cantidad, @Precio);");
+                sqlDF.Append(" INSERT INTO DETALLEFACTURA ");
+                sqlDF.Append(" VALUES (@IdFactura, @CodigoProducto, @Cantidad, @Precio);");
 
                 using (SqlConnection _conexion = new SqlConnection(cadena))
                 {
@@ -659,10 +659,9 @@ namespace Facturacion1201
                         comando1.Parameters.Add("@Descuento", SqlDbType.Decimal).Value = _factura.Descuento;
                         comando1.Parameters.Add("@Impuesto", SqlDbType.Decimal).Value = _factura.Impuesto;
                         comando1.Parameters.Add("@Total", SqlDbType.Decimal).Value = _factura.Total;
-                        comando1.Parameters.Add("@IdFactura", SqlDbType.Int).Direction = ParameterDirection.Output;
-
+                       
                         int idFactura = 0;
-                        idFactura =  Convert.ToInt32(comando1.ExecuteScalar());
+                        idFactura =  Convert.ToInt32( await comando1.ExecuteScalarAsync());
 
                         foreach (var item in _detalleFacturaList)
                         {
